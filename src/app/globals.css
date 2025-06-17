@@ -1,0 +1,54 @@
+@layer tailwind-base, primereact, tailwind-utilities;
+
+@layer tailwind-base {
+  @tailwind base;
+}
+
+@layer tailwind-utilities {
+  @tailwind components;
+  @tailwind utilities;
+}
+
+body {
+  height: 98vh !important;
+  background-color: whitesmoke !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+
+.p-progress-spinner-circle {
+  stroke: #696cff !important;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #d9d9d9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #bbbbbb;
+}
+
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  box-shadow: none !important;
+  border: 0.6px solid #e0e0e0 !important;
+  border-radius: 6px !important;
+}
+
+.css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+  color: #686868 !important;
+}
+
+.p-input-icon-right > i:last-of-type {
+  right: 0.75rem;
+  color: #6b7280;
+  cursor: pointer;
+}

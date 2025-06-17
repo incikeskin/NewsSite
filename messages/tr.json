@@ -1,0 +1,67 @@
+{
+  "Home": {
+    "header": "Güncel Başlıklar"
+  },
+  "SideBar": {
+    "headerLabel": "kısayollar",
+    "news": "Haberler",
+    "football": "Futbol",
+    "movie" :"Film",
+    "religion": "Namaz Vakitleri",
+    "weather": "Hava Durumu",
+    "economy": "Ekonomi",
+    "gold": "Altın Fiyatları",
+    "exchange": "Döviz Kurları"
+  },
+  "Football": {
+    "headerLabel": "Ligler",
+    "label1": "Sıralama",
+    "label2": "Takım",
+    "label3": "Oynanan Maç",
+    "label4": "Galibiyet",
+    "label5": "Mağlubiyet",
+    "label6": "puan durumu"
+  },
+  "Weather": {
+    "headerLabel": "HAVA DURUMU",
+    "label1": "Tarih",
+    "label2": "Gün",
+    "label3": "İkon",
+    "label4": "Açıklama",
+    "label5": "Sıcaklık",
+    "label6": "En Düşük",
+    "label7": "En Yüksek",
+    "label8": "Gece",
+    "label9": "Nem",
+
+    "Pazartesi": "Pazartesi",
+    "Salı": "Salı",
+    "Çarşamba": "Çarşamba",
+    "Perşembe": "Perşembe",
+    "Cuma": "Cuma",
+    "Cumartesi": "Cumartesi",
+    "Pazar": "Pazar",
+
+    "açık": "Açık",
+    "orta şiddetli yağmur": "Orta Şiddetli Yağmur",
+    "hafif yağmur": "Hafif Şiddetli Yağmur",
+    "şiddetli yağmur": "Şiddetli Yağmur",
+    "az bulutlu": "Az Bulutlu",
+    "parçalı bulutlu": "Parçalı Bulutlu",
+    "parçalı az bulutlu": "Parçalı Az Bulutlu",
+    "bulutlu": "Bulutlu",
+    "kapalı" : "Kapalı",
+
+    "dropdown1": "Türkiye",
+    "dropdown2": "Almanya",
+    "dropdown3": "Amerika"
+  },
+  "Economy": {
+    "headerGold": "ALTIN FİYATLARI",
+    "headerExchange": "DÖVİZ KURLARI",
+    "label1":"Tür",
+    "label2": "Alış",
+    "label3": "Satış",
+    "label4": "Oran"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "Home": {
+    "header": "Aktuelle Schlagzeilen"
+  },
+  "SideBar": {
+    "headerLabel": "Abkürzungen",
+    "news": "Aktuelles",
+    "football": "Fußball",
+    "movie": "Movie",
+    "religion": "Gebetszeiten",
+    "weather": "Wettervorhersage",
+    "economy": "Wirtschaft",
+    "gold": "Goldpreise",
+    "exchange": "Wechselkurse"
+  },
+  "Football": {
+    "headerLabel": "Ligen",
+    "label1": "Sortieren",
+    "label2": "Mannschaft",
+    "label3": "Gespieltes Spiel",
+    "label4": "Sieg",
+    "label5": "Niederlage",
+    "label6": "Tabellenstand"
+  },
+  "Weather": {
+    "headerLabel": "WETTER",
+    "label1": "Datum",
+    "label2": "Tag",
+    "label3": "Symbol",
+    "label4": "Beschreibung",
+    "label5": "Temperatur",
+    "label6": "Tiefstwert",
+    "label7": "Höchstwert",
+    "label8": "Nacht",
+    "label9": "Luftfeuchtigkeit",
+
+    "Pazartesi": "Montag",
+    "Salı": "Dienstag",
+    "Çarşamba": "Mittwoch",
+    "Perşembe": "Donnerstag",
+    "Cuma": "Freitag",
+    "Cumartesi": "Samstag",
+    "Pazar": "Sonntag",
+
+    "açık": "Klar",
+    "orta şiddetli yağmur": "Mäßiger Regen",
+    "hafif yağmur": "Leichter Regen",
+    "şiddetli yağmur": "Starker Regen",
+    "az bulutlu": "Teilweise Bewölkt",
+    "parçalı bulutlu": "Teilweise Bewölkt",
+    "parçalı az bulutlu": "teilweise weniger bewölkt",
+    "bulutlu": "Bewölkt",
+    "kapalı": "Bedeckt",
+
+    "dropdown1": "Türkei",
+    "dropdown2": "Deutschland",
+    "dropdown3": "Amerika"
+  },
+  "Economy": {
+    "headerGold": "GOLDPREISE",
+    "headerExchange": "WECHSELKURSE",
+    "label1": "Art",
+    "label2": "Kaufen",
+    "label3": "Verkaufen",
+    "label4": "Rate"
+  }
+}

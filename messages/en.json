@@ -1,0 +1,68 @@
+{
+  "Home": {
+    "header": "Current Headlines"
+  },
+  "SideBar": {
+    "headerLabel": "Shortcuts",
+    "news": "News",
+    "football": "Football",
+    "movie": "Movie",
+    "religion": "Prayer Times",
+    "weather": "Weather Forecast",
+    "economy": "Economy",
+    "gold": "Gold Prices",
+    "exchange": "Exchange Rates"
+  },
+  "Football": {
+    "headerLabel": "Leagues",
+    "label1": "Ranking",
+    "label2": "Teams",
+    "label3": "Matchs Played",
+    "label4": "Wins",
+    "label5": "Defeats",
+    "label6": "Standings"
+  },
+  "Weather": {
+    "headerLabel": "WEATHER",
+    "label1": "Date",
+    "label2": "Day",
+    "label3": "Icon",
+    "label4": "Description",
+    "label5": "Temperature",
+    "label6": "Lowest",
+    "label7": "Highest",
+    "label8": "Night",
+    "label9": "Humidity",
+
+    "Pazartesi": "Monday",
+    "Salı": "Tuesday",
+    "Çarşamba": "Wednesday",
+    "Perşembe": "Thursday",
+    "Cuma": "Friday",
+    "Cumartesi": "Saturday",
+    "Pazar": "Sunday",
+
+    "açık": "Clear",
+    "orta şiddetli yağmur": "Moderate Rain",
+    "hafif yağmur": "Light Rain",
+    "şiddetli yağmur": "Heavy Rain",
+    "az bulutlu": "Partly Cloudy",
+    "parçalı bulutlu": "Partly Cloudy",
+    "parçalı az bulutlu": "Partly Less Cloudy",
+    "bulutlu": "Cloudy",
+    "kapalı": "Overcast",
+
+    "dropdown1": "Turkey",
+    "dropdown2": "Germany",
+    "dropdown3": "America"
+
+  },
+  "Economy": {
+    "headerGold": "GOLD PRICES",
+    "headerExchange": "EXCHANGE RATES",
+    "label1": "Type",
+    "label2": "Buy",
+    "label3": "Sell",
+    "label4": "Rate"
+  }
+}
