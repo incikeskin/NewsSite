@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import { Button } from 'primereact/button';
 import { setToastMessage } from '@/src/redux/toastMessage-store';
@@ -12,7 +11,7 @@ import placeholder from '@/public/assets/png/Image-Placeholder-Dark.png';
 import Image from 'next/image';
 
 interface Props {
-  key: string;
+  key?: string;
   url: string;
   description: string;
   image: string;
@@ -22,84 +21,70 @@ interface Props {
 
 const PostCards = (Props: Props) => {
   const share = () => {
-    navigator
-      .share({
-        text: Props.name,
-        title: Props.source,
-        url: Props.url,
-      })
-      .then();
+    navigator.share({
+      text: Props.name,
+      title: Props.source,
+      url: Props.url,
+    });
   };
+
   const profilePicSelect = () => {
-    const name: string = Props.source.toLowerCase();
-    switch (name) {
-      case 'cumhuriyet':
-        return cumhuriyet;
-
-      case 'karar':
-        return karar;
-
-      case 'hürriyet':
-        return hurriyet;
-
-      case 'habertürk':
-        return haberturk;
-
-      case 'sabah':
-        return sabah;
-
-      default:
-        return placeholder;
+    switch (Props.source.toLowerCase()) {
+      case 'cumhuriyet': return cumhuriyet;
+      case 'karar': return karar;
+      case 'hürriyet': return hurriyet;
+      case 'habertürk': return haberturk;
+      case 'sabah': return sabah;
+      default: return placeholder;
     }
   };
 
   const handleCopyUrl = () => {
-    navigator.clipboard.writeText(Props.url).then();
+    navigator.clipboard.writeText(Props.url);
     reduxStore.dispatch(setToastMessage({ show: true, severity: 'success', summary: 'Başarılı', detail: 'url kopyalandı' }));
   };
 
   return (
     <div
-      className="col-12 p-3 mb-5 "
-      style={{
-        backgroundColor: 'rgba(250, 250, 250, 0.8)',
-        backdropFilter: 'blur(8px)',
-        borderRadius: '20px',
-      }}
+      className="bg-white bg-opacity-80 backdrop-blur-md rounded-2xl p-4 mb-5 shadow-md hover:shadow-lg transition w-full min-h-[300px] flex flex-col"
     >
-      <div className="flex flex-column align-items-center mb-3 justify-between md:flex-row">
-        <div className="flex col-12 md:col-6 flex-column">
-          <div className="flex flex-row mr-5 mb-5 p-3 items-center">
-            <Image className="bg-black" src={profilePicSelect()} alt={Props.source} style={{ width: 75, height: 75, borderRadius: '50%' }} />
+      <div className="flex flex-col md:flex-row items-center mb-3 justify-between w-full flex-grow">
+        <div className="md:w-1/2 p-3 flex flex-col justify-center min-h-[220px]">
+          <div className="flex items-center mb-4">
+            <Image
+              className="bg-black rounded-full"
+              src={profilePicSelect()}
+              alt={Props.source}
+              width={75}
+              height={75}
+            />
             <div className="ml-4 text-black font-medium">{Props.source}</div>
           </div>
-          <div className="flex-1 text-xl text-black p-3 font-semibold">{Props.name}</div>
+          <h3 className="text-xl font-semibold text-black">{Props.name}</h3>
+          <p className="mt-4 text-black font-medium line-clamp-4 overflow-hidden">{Props.description}</p>
         </div>
-        {Props.image ? (
-          <div className="col-12 h-42 max-h-42 md:col-6 flex justify-end">
-            <img src={Props.image} alt="" className="p-1 card object-fill col-12 h-52 sm:h-96" />
-          </div>
-        ) : (
-          <div className="col-7 h-96"></div>
-        )}
+        <div className="md:w-1/2 flex justify-center p-3 min-h-[220px]">
+          {Props.image ? (
+            <img
+              src={Props.image}
+              alt={Props.name}
+              className="rounded-lg object-cover w-full max-h-64"
+              style={{ maxHeight: '256px' }} // h-64 = 16 * 16 px = 256px
+            />
+          ) : (
+            <div className="w-full h-48 sm:h-64 bg-gray-200 rounded-lg" />
+          )}
+        </div>
       </div>
-      <div className="col-12 text-black p-3 mb-5 font-medium">{Props.description}</div>
-      <div className="flex justify-end">
-        <Button icon="pi pi-clone" rounded severity="success" aria-label="Bookmark" className="m-3" onClick={handleCopyUrl} />
-        <Button
-          icon="pi pi-info"
-          rounded
-          severity="success"
-          aria-label="Bookmark"
-          className="m-3 mr-4"
-          onClick={() => {
-            window.open(Props.url, '_blank');
-          }}
-        />
-        <Button icon="pi pi-share-alt" rounded severity="success" aria-label="Bookmark" className="m-3 mr-4" onClick={share} />
+      <div className="flex justify-end space-x-3 mt-auto pt-3 border-t border-gray-200">
+        <Button icon="pi pi-clone" rounded severity="success" aria-label="Copy URL" onClick={handleCopyUrl} />
+        <Button icon="pi pi-info" rounded severity="success" aria-label="Open Link" onClick={() => window.open(Props.url, '_blank')} />
+        <Button icon="pi pi-share-alt" rounded severity="success" aria-label="Share" onClick={share} />
       </div>
     </div>
   );
 };
 
 export default PostCards;
+
+

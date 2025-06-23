@@ -1,4 +1,5 @@
 'use client';
+
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useEventListener, useUnmountEffect } from 'primereact/hooks';
 import { classNames } from 'primereact/utils';
@@ -6,12 +7,15 @@ import React, { Suspense, useContext, useEffect, useRef } from 'react';
 import AppSidebar from './AppSidebar';
 import AppTopbar from './AppTopbar';
 import { LayoutContext } from './context/layoutcontext';
-import backgroundImage from '@/public/assets/png/kaktüsarkaplan.jpg';
+
+
 
 const Layout = ({ children }: any) => {
   const { layoutConfig, layoutState, setLayoutState } = useContext(LayoutContext);
   const topbarRef = useRef<any>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
+
+  // Menü dışına tıklamayı dinleme
   const [bindMenuOutsideClickListener, unbindMenuOutsideClickListener] = useEventListener({
     type: 'click',
     listener: (event) => {
@@ -28,13 +32,7 @@ const Layout = ({ children }: any) => {
     },
   });
 
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  useEffect(() => {
-    hideMenu();
-    hideProfileMenu();
-  }, [pathname, searchParams]);
-
+  // Profil menüsü dışına tıklamayı dinleme
   const [bindProfileMenuOutsideClickListener, unbindProfileMenuOutsideClickListener] = useEventListener({
     type: 'click',
     listener: (event) => {
@@ -50,6 +48,14 @@ const Layout = ({ children }: any) => {
       }
     },
   });
+
+  // Yönlendirme değişince menüyü gizle
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    hideMenu();
+    hideProfileMenu();
+  }, [pathname, searchParams]);
 
   const hideMenu = () => {
     setLayoutState((prevLayoutState: any) => ({
@@ -70,28 +76,23 @@ const Layout = ({ children }: any) => {
     unbindProfileMenuOutsideClickListener();
   };
 
-  const blockBodyScroll = (): void => {
-    if (document.body.classList) {
-      document.body.classList.add('blocked-scroll');
-    } else {
-      document.body.className += ' blocked-scroll';
-    }
+  const blockBodyScroll = () => {
+    document.body.classList.add('overflow-hidden');
   };
 
-  const unblockBodyScroll = (): void => {
-    if (document.body.classList) {
-      document.body.classList.remove('blocked-scroll');
-    } else {
-      document.body.className = document.body.className.replace(new RegExp('(^|\\b)' + 'blocked-scroll'.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-    }
+  const unblockBodyScroll = () => {
+    document.body.classList.remove('overflow-hidden');
   };
 
   useEffect(() => {
     if (layoutState.overlayMenuActive || layoutState.staticMenuMobileActive) {
       bindMenuOutsideClickListener();
     }
-
-    layoutState.staticMenuMobileActive && blockBodyScroll();
+    if (layoutState.staticMenuMobileActive) {
+      blockBodyScroll();
+    } else {
+      unblockBodyScroll();
+    }
   }, [layoutState.overlayMenuActive, layoutState.staticMenuMobileActive]);
 
   useEffect(() => {
@@ -105,39 +106,47 @@ const Layout = ({ children }: any) => {
     unbindProfileMenuOutsideClickListener();
   });
 
-  const containerClass = classNames('layout-wrapper', {
-    'layout-overlay': layoutConfig.menuMode === 'overlay',
-    'layout-static': layoutConfig.menuMode === 'static',
-    'layout-static-inactive': layoutState.staticMenuDesktopInactive && layoutConfig.menuMode === 'static',
-    'layout-overlay-active': layoutState.overlayMenuActive,
-    'layout-mobile-active': layoutState.staticMenuMobileActive,
-    'p-input-filled': layoutConfig.inputStyle === 'filled',
-    'p-ripple-disabled': !layoutConfig.ripple,
-  });
+  const containerClass = classNames(
+    'layout-wrapper min-h-screen flex flex-col',
+    {
+      'layout-overlay': layoutConfig.menuMode === 'overlay',
+      'layout-static': layoutConfig.menuMode === 'static',
+      'layout-static-inactive': layoutState.staticMenuDesktopInactive && layoutConfig.menuMode === 'static',
+      'layout-overlay-active': layoutState.overlayMenuActive,
+      'layout-mobile-active': layoutState.staticMenuMobileActive,
+      'p-input-filled': layoutConfig.inputStyle === 'filled',
+      'p-ripple-disabled': !layoutConfig.ripple,
+    }
+  );
 
   return (
     <Suspense>
-      <React.Fragment>
+      <>
         <div
           className={containerClass}
           style={{
-            backgroundImage: `url(${backgroundImage.src})`,
-            backgroundRepeat: 'repeat', // Ensures the background image repeats if it's small
-            backgroundSize: 'auto', // Keeps the original size of the image
+            backgroundColor: '#E8E9EB',
+            backgroundRepeat: 'repeat',
+            backgroundSize: 'auto',
           }}
         >
           <AppTopbar ref={topbarRef} />
-          <div ref={sidebarRef} className="layout-sidebar opacity-90">
+          <div
+            ref={sidebarRef}
+            className="layout-sidebar opacity-90 z-30 min-h-screen flex flex-col !important"
+             style={{ width: '14rem' }} 
+          >
             <AppSidebar />
           </div>
-          <div className="layout-main-container">
-            <div className="layout-main">{children}</div>
+          <div className="layout-main-container flex-grow relative z-10">
+            <main className="layout-main p-4">{children}</main>
           </div>
-          <div className="layout-mask"></div>
+          <div className="layout-mask fixed inset-0 bg-black bg-opacity-30 hidden md:block"></div>
         </div>
-      </React.Fragment>
+      </>
     </Suspense>
   );
 };
 
 export default Layout;
+

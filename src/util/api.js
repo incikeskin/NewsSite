@@ -1,13 +1,18 @@
+// api.js
 'use client';
 import axios from 'axios';
 import { hostUrl } from './constants';
 import { clearStorage } from './util-functions.ts';
 
-const API_KEY = '5j7CsYlVppA4UIPYpCfzIU:2SNNk8iRyEl6NB7DBJuSf8';
+
+const API_KEY = '31DZWcBhPEk5LslEXD1VG0:0v12M2isbMYr8qMJDyqapO';
 
 const axiosClient = axios.create({
-  baseURL: hostUrl,
-  headers: { 'Content-Type': 'application/json', authorization: `apikey ${API_KEY}` },
+  baseURL: hostUrl, // Bu sadece kendi API’nse lazım. CollectAPI ayrı olduğu için override edeceğiz.
+  headers: {
+    'Content-Type': 'application/json',
+    authorization: `apikey ${API_KEY}`,
+  },
 });
 
 axiosClient.interceptors.request.use(
@@ -24,7 +29,7 @@ axiosClient.interceptors.response.use(
     return response;
   },
   function (error) {
-    if (error.response.status === 401) {
+    if (error.response?.status === 401) {
       clearStorage();
       window.location.href = '/auth/login';
     }

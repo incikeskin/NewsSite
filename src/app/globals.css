@@ -1,17 +1,20 @@
 @layer tailwind-base, primereact, tailwind-utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-@layer tailwind-base {
-  @tailwind base;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@layer tailwind-utilities {
-  @tailwind components;
-  @tailwind utilities;
+@layer base {
+  body {
+    @apply font-poppins;
+  }
 }
 
 body {
   height: 98vh !important;
-  background-color: whitesmoke !important;
+  background-color: rgb(213, 213, 213) !important;
 }
 
 input::-webkit-outer-spin-button,
@@ -52,3 +55,4 @@ input::-webkit-inner-spin-button {
   color: #6b7280;
   cursor: pointer;
 }
+

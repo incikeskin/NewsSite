@@ -1,70 +1,51 @@
 'use client';
 import React, { useEffect, useState, useRef } from 'react';
-
 import { Button } from 'primereact/button';
 import { ProgressSpinner } from 'primereact/progressspinner';
-import 'primeicons/primeicons.css';
-import 'primereact/resources/themes/saga-blue/theme.css';
 import PostCards from '@/src/components/postCards';
-
-import { reduxStore } from '@/src/redux';
-import { setToastMessage } from '@/src/redux/toastMessage-store';
+import { useDispatch } from 'react-redux';
+import { newsSelector, reduxStore, useAppSelector } from '@/src/redux';
 import { useTranslations } from 'next-intl';
-
-interface NewsItem {
-  key: string;
-  url: string;
-  description: string;
-  image: string;
-  name: string;
-  source: string;
-}
-
-interface selectedProfiles {
-  label: string;
-}
+import { getNewsAction } from '@/src/redux';
 
 const HomePage = () => {
   const t = useTranslations('Home');
-  const [news, setNews] = useState<NewsItem[]>([]);
+  const dispatch = useDispatch();
+  const news: any = useAppSelector(newsSelector)?.news;
   const [pageNumber, setPageNumber] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const newsContainerRef = useRef<HTMLDivElement>(null);
-  const hasFetchedInitialPage = useRef(false); //useeffectten 1 tane fecthlemesi için
+  const hasFetchedInitialPage = useRef(false);
   const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
     if (!hasFetchedInitialPage.current) {
-      console.log('Fetching initial page', pageNumber);
-      fetchNewsData(pageNumber).then();
+      fetchNewsData(pageNumber);
       hasFetchedInitialPage.current = true;
     }
   }, [pageNumber]);
 
+  const fetchNewsData = async (page: number) => {
+    await reduxStore.dispatch(getNewsAction(pageNumber))
+  };
+
   const handleScrollTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth', // Smooth scrolling behavior
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleScroll = () => {
-    //hızlı hızlı scrollayınca birden fazla sayfa gelmesin diye
     if (debounceTimeout.current) {
       clearTimeout(debounceTimeout.current);
-      setLoading(true);
     }
-    if (document.documentElement.scrollTop > 1300) {
+
+    if (document.documentElement.scrollTop > 400) {
       setShowButton(true);
     } else {
       setShowButton(false);
     }
-    debounceTimeout.current = setTimeout(() => {
-      console.log(document.documentElement.scrollTop);
 
+    debounceTimeout.current = setTimeout(() => {
       if (window.innerHeight + document.documentElement.scrollTop + 1 >= document.documentElement.scrollHeight) {
-        setPageNumber((prev) => prev + 1);
+        setPageNumber(prev => prev + 1);
         hasFetchedInitialPage.current = false;
       }
     }, 1000);
@@ -72,30 +53,12 @@ const HomePage = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll); // Cleanup function
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const fetchNewsData = async (page: number) => {
-    setLoading(true);
-    try {
-      const resultAction = await reduxStore.dispatch(fetchNews(page));
-      if (fetchNews.fulfilled.match(resultAction)) {
-        const newsData = resultAction.payload;
-        setNews((prev) => [...prev, ...newsData.result]);
-        reduxStore.dispatch(setToastMessage({ show: true, severity: 'success', summary: 'Başarılı', detail: 'haberler çekildi' }));
-      } else {
-        console.error('Failed to fetch news:', resultAction.error);
-      }
-    } catch (error) {
-      console.error('Failed to fetch news:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <div className="scroll-smooth">
-      {showButton && ( // Conditionally render the scroll button
+      {showButton && (
         <Button
           icon="pi pi-angle-double-up"
           aria-label="Scroll to Top"
@@ -104,24 +67,22 @@ const HomePage = () => {
           severity="success"
         />
       )}
-      <div className="grid card px-4 py-1 opacity-90">
+      <div className="grid card px-1 py-1 opacity-90">
         <div className="col-12 flex justify-content-center align-items-center text-center text-4xl font-medium">{t('header')}</div>
       </div>
 
-      <div ref={newsContainerRef} className="grid bg-transparent p-3" style={{ overflowY: 'auto' }}>
-        {news.map((e, index) => (
-          <PostCards
-            key={`${e.key}-${pageNumber}-${index}`} // key-sayfa sayısı-index
-            url={e.url}
-            description={e.description}
-            image={e.image}
-            name={e.name}
-            source={e.source}
-          />
+      <div  className="max-w-screen-lg mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-3">
+        {news?.map((e:any, index:any) => (
+          <div key={`${e.key}-${pageNumber}-${index}`} className="w-full">
+            <PostCards
+              url={e.url}
+              description={e.description}
+              image={e.image}
+              name={e.name}
+              source={e.source}
+            />
+          </div>
         ))}
-      </div>
-      <div className="col-12 flex justify-center align-center">
-        {loading && <ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth="8" animationDuration=".5s" className="mb-5" />}
       </div>
     </div>
   );
