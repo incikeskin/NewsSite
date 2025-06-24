@@ -5,6 +5,8 @@ import { weatherSlice } from '@/src/redux/weather-store';
 import { religionSlice} from '@/src/redux/religion-store';
 import { moviesSlice } from '@/src/redux/movies-store';
 import { pharmacySlice } from '@/src/redux/pharmacy-store';
+import { exchangeSlice } from '@/src/redux/exchange-store';
+import { goldSlice } from '@/src/redux/gold-store';
 
 
 export const rootReducer = combineReducers({
@@ -14,4 +16,6 @@ export const rootReducer = combineReducers({
   religionReducer: religionSlice.reducer,
   moviesReducer: moviesSlice.reducer,
   pharmacyReducer: pharmacySlice.reducer,
+  exchangeReducer: exchangeSlice.reducer,
+  goldReducer: goldSlice.reducer,
 });
