@@ -4,6 +4,7 @@ import { newsSlice } from '@/src/redux/news-store';
 import { weatherSlice } from '@/src/redux/weather-store';
 import { religionSlice} from '@/src/redux/religion-store';
 import { moviesSlice } from '@/src/redux/movies-store';
+import { pharmacySlice } from '@/src/redux/pharmacy-store';
 
 
 export const rootReducer = combineReducers({
@@ -12,4 +13,5 @@ export const rootReducer = combineReducers({
   weatherReducer: weatherSlice.reducer,
   religionReducer: religionSlice.reducer,
   moviesReducer: moviesSlice.reducer,
+  pharmacyReducer: pharmacySlice.reducer,
 });
