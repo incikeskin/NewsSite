@@ -3,6 +3,7 @@ import { toastMessageSlice } from '@/src/redux/toastMessage-store';
 import { newsSlice } from '@/src/redux/news-store';
 import { weatherSlice } from '@/src/redux/weather-store';
 import { religionSlice} from '@/src/redux/religion-store';
+import { moviesSlice } from '@/src/redux/movies-store';
 
 
 export const rootReducer = combineReducers({
@@ -10,4 +11,5 @@ export const rootReducer = combineReducers({
   newsReducer: newsSlice.reducer,
   weatherReducer: weatherSlice.reducer,
   religionReducer: religionSlice.reducer,
+  moviesReducer: moviesSlice.reducer,
 });
