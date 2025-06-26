@@ -28,8 +28,10 @@ export default function ReligionPage() {
   }, [selectedCity]);
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold text-center mb-6">{selectedCity.name} Namaz Vakitleri</h1>
+    <div className=" max-w-4xl mx-auto">
+      <h1 className="text-3xl lg:text-6xl font-semibold text-surface-950
+      text-center max-w-xl mt-0 mx-auto leading-tight">{selectedCity.name} Namaz Vakitleri</h1>
+      <p className="text-lg text-surface-500 max-w-lg text-center mx-auto">Aramak İstediğiniz İli Seçin!</p>
 
       <div className="mb-6 flex justify-center">
         <Dropdown
@@ -48,7 +50,8 @@ export default function ReligionPage() {
       {loading ? (
         <p className="text-center text-lg text-gray-500">Yükleniyor...</p>
       ) : prayers?.length > 0 ? (
-        <DataTable value={prayers} responsiveLayout="scroll" stripedRows paginator rows={6}>
+        <DataTable value={prayers} responsiveLayout="scroll" stripedRows paginator rows={6}
+                   className="rounded-2xl overflow-hidden shadow-md">
           <Column field="vakit" header="Vakit" sortable></Column>
           <Column field="saat" header="Saat" sortable></Column>
         </DataTable>

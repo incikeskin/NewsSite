@@ -134,12 +134,12 @@ const Layout = ({ children }: any) => {
           <div
             ref={sidebarRef}
             className="layout-sidebar opacity-90 z-30 min-h-screen flex flex-col !important"
-             style={{ width: '14rem' }} 
+             style={{ width: '14rem' }}
           >
             <AppSidebar />
           </div>
           <div className="layout-main-container flex-grow relative z-10">
-            <main className="layout-main p-4">{children}</main>
+            <main className="layout-main p-0">{children}</main>
           </div>
           <div className="layout-mask fixed inset-0 bg-black bg-opacity-30 hidden md:block"></div>
         </div>

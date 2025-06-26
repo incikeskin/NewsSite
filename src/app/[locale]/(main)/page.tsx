@@ -9,6 +9,7 @@ import { newsSelector, reduxStore, useAppSelector } from '@/src/redux';
 import { useTranslations } from 'next-intl';
 import { getNewsAction } from '@/src/redux';
 
+
 const HomePage = () => {
   const t = useTranslations('Home');
   const dispatch = useDispatch();
@@ -53,7 +54,7 @@ const HomePage = () => {
       }
     }, 1000);
   };
-
+  const items = ['Namaz Vakitleri', 'Haberler', 'Döviz', 'Hava Durumu', 'Altın', 'Nöbetçi Eczaneler'];
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -76,17 +77,33 @@ const HomePage = () => {
           severity="success"
         />
       )}
-
-      <div className="grid card px-1 py-1 opacity-90">
-        <div className="col-12 flex justify-content-center align-items-center text-center text-4xl font-medium">
-          {t('header')}
+      <div className="group relative overflow-hidden mx-auto px-4 max-w-screen-md mb-4"
+           style={{
+             WebkitMaskImage:
+               'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+             maskImage:
+               'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+           }}>
+        <div className="flex animate-loop-scroll whitespace-nowrap">
+          {[...items, ...items].map((item, index) => (
+            <div
+              key={index}
+              className="w-44 flex items-center justify-center px-4 text-base sm:text-lg font-semibold text-lg"
+            >
+              <span>{item}</span>
+            </div>
+          ))}
         </div>
       </div>
 
+      <h1 className="text-3xl lg:text-6xl font-semibold text-surface-950
+      text-center max-w-xl mt-0 mx-auto leading-tight">{t('header')}</h1>
+      <p className="text-lg text-surface-500 max-w-lg text-center mx-auto">Tarafsız Haberin Doğru Adresi</p>
+
       {/* Arama Kutusu */}
-      <div className="flex justify-center mt-1 mb-1">
+      <div className="flex justify-center mb-1">
         <span className="p-input-icon-left">
-          <div className="flex justify-center mt-6 mb-8">
+          <div className="flex justify-center mt-2 mb-4">
             <div className="relative w-80">
               <span className="absolute inset-y-0 left-3 flex items-center text-gray-400">
                 <i className="pi pi-search" />

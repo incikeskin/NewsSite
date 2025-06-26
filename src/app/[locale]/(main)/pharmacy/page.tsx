@@ -53,8 +53,11 @@ export default function PharmacyPage() {
   }, [selectedDistrict, selectedCity]);
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold text-center mb-6">Nöbetçi Eczaneler</h1>
+    <div className="px-6 max-w-6xl mb-1 mx-auto">
+      <h1 className="text-3xl lg:text-6xl font-semibold text-surface-950
+      text-center max-w-xl mt-0 mx-auto leading-tight">Nöbetçi Eczaneler</h1>
+      <p className="text-lg text-surface-500 max-w-lg text-center mx-auto">İl ve İlçe Seçin!</p>
+
 
       <div className="flex justify-center gap-4 mb-6">
         <Dropdown
@@ -91,6 +94,7 @@ export default function PharmacyPage() {
           stripedRows
           paginator
           rows={10}
+          className="rounded-2xl overflow-hidden shadow-md"
         >
           <Column field="name" header="Eczane Adı" sortable />
           <Column field="address" header="Adres" sortable />

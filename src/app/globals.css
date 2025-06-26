@@ -12,9 +12,22 @@
   }
 }
 
+@keyframes infinite-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-loop-scroll {
+    animation: infinite-scroll 20s linear infinite;
+}
 body {
   height: 98vh !important;
   background-color: rgb(213, 213, 213) !important;
+    margin:0;
 }
 
 input::-webkit-outer-spin-button,

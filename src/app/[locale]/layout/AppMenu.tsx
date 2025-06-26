@@ -35,7 +35,6 @@ const AppMenu = () => {
         },
         { label: t('religion'), to: '/religion' },
         { label: t('weather'), to: '/weather' },
-        { label: t('movie'), to: '/movies' },
         {
           label: t('economy'),
           items: [
