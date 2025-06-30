@@ -29,7 +29,7 @@ const AppTopbar = forwardRef<TopbarRef>((props, ref) => {
                   alt="Logo"
                   className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 transition-all"
               />
-              <span className="text-lg sm:text-xl md:text-2xl font-bold tracking-wide text-gray-800 dark:text-white uppercase">
+              <span className="text-lg sm:text-xl md:text-2xl font-bold tracking-wide text-red-700 dark:text-white uppercase">
     HABERCİNİZ
   </span>
           </Link>

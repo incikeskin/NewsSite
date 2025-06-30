@@ -12,7 +12,10 @@
     "weather": "Hava Durumu",
     "economy": "Ekonomi",
     "gold": "Altın Fiyatları",
-    "exchange": "Döviz Kurları"
+    "exchange": "Döviz Kurları",
+     "contactUs" : "Bize Ulaşın",
+    "register": "Kayıt ol",
+    "login": "Giriş yap"
   },
   "Football": {
     "headerLabel": "Ligler",
