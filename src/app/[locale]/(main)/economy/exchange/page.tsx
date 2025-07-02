@@ -37,8 +37,9 @@ export default function ExchangePage() {
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold text-center mb-6">Döviz Çevirici</h1>
+    <div className="p-6 max-w-4xl mx-auto flex flex-col items-center">
+      <h2 className="text-3xl font-extrabold text-center text-red-700 mb-2">Döviz Çevirici</h2>
+      <p className="text-sm text-center text-white mb-10 max-w-2xl">Bu alandan döviz çevirimi yapabilirsiniz.</p>
 
       <div className="flex justify-center gap-4 mb-6">
         <Dropdown
@@ -49,20 +50,8 @@ export default function ExchangePage() {
           placeholder="Base currency"
           className="w-36"
         />
-        <Dropdown
-          value={to}
-          options={currencies}
-          onChange={(e) => setTo(e.value)}
-          optionLabel="name"
-          placeholder="To currency"
-          className="w-36"
-        />
-        <InputText
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          placeholder="Miktar (opsiyonel)"
-          className="w-36"
-        />
+        <Dropdown value={to} options={currencies} onChange={(e) => setTo(e.value)} optionLabel="name" placeholder="To currency" className="w-36" />
+        <InputText value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Miktar (opsiyonel)" className="w-36" />
         <Button label="Çevir" onClick={fetchRates} loading={loading} />
       </div>
 
@@ -79,5 +68,3 @@ export default function ExchangePage() {
     </div>
   );
 }
-
-

@@ -15,7 +15,8 @@
     "exchange": "Döviz Kurları",
      "contactUs" : "Bize Ulaşın",
     "register": "Kayıt ol",
-    "login": "Giriş yap"
+    "login": "Giriş yap",
+      "account": "Hesabım"
   },
   "Football": {
     "headerLabel": "Ligler",

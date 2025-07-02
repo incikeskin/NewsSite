@@ -4,7 +4,6 @@ import axios from 'axios';
 import { hostUrl } from './constants';
 import { clearStorage } from './util-functions.ts';
 
-
 const API_KEY = '31DZWcBhPEk5LslEXD1VG0:0v12M2isbMYr8qMJDyqapO';
 
 const axiosClient = axios.create({

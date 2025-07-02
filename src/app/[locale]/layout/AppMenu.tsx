@@ -42,11 +42,10 @@ const AppMenu = () => {
             { label: t('exchange'), to: '/economy/exchange' },
           ],
         },
-
         { label: t('contactUs'), to: '/contactUs' },
         { label: t('login'), to: '/login' },
         { label: t('register'), to: '/register' },
-
+        { label: t('account'), to: '/account' },
       ],
     },
   ];

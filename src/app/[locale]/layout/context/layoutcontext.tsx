@@ -20,10 +20,25 @@ export const LayoutProvider = ({ children }: any) => {
     configSidebarVisible: false,
     staticMenuMobileActive: false,
     menuHoverActive: false,
-    sidebarVisible: true, // Yeni: sidebar görünürlüğü
+    sidebarVisible: true,
   });
 
-  // Menü aç/kapa fonksiyonu (mevcut)
+  // Tema değiştirildiğinde tailwind dark class ve theme-css linkini güncelle
+  useEffect(() => {
+    // tailwind dark mod class
+    if (layoutConfig.colorScheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
+    // Tema CSS linkini güncelle
+    const themeLink = document.getElementById('theme-css') as HTMLLinkElement | null;
+    if (themeLink) {
+      themeLink.href = layoutConfig.colorScheme === 'dark' ? '/themes/lara-dark-indigo/theme.css' : '/themes/lara-light-indigo/theme.css';
+    }
+  }, [layoutConfig.colorScheme]);
+
   const onMenuToggle = () => {
     if (isOverlay()) {
       setLayoutState((prevLayoutState: any) => ({
@@ -44,7 +59,6 @@ export const LayoutProvider = ({ children }: any) => {
     }
   };
 
-  // Sidebar görünürlüğü toggle
   const toggleSidebar = () => {
     setLayoutState((prevLayoutState: any) => ({
       ...prevLayoutState,
@@ -52,7 +66,6 @@ export const LayoutProvider = ({ children }: any) => {
     }));
   };
 
-  // Tema değiştirici (light <-> dark)
   const toggleColorScheme = () => {
     setLayoutConfig((prevLayoutConfig: any) => {
       const newColorScheme = prevLayoutConfig.colorScheme === 'light' ? 'dark' : 'light';
@@ -64,7 +77,6 @@ export const LayoutProvider = ({ children }: any) => {
     });
   };
 
-  // Helper fonksiyonlar (mevcut)
   const isOverlay = () => layoutConfig.menuMode === 'overlay';
   const isDesktop = () => window.innerWidth > 991;
 
@@ -74,10 +86,9 @@ export const LayoutProvider = ({ children }: any) => {
     layoutState,
     setLayoutState,
     onMenuToggle,
-    toggleSidebar,         // Yeni eklenen fonksiyon
-    toggleColorScheme,     // Yeni eklenen fonksiyon
+    toggleSidebar,
+    toggleColorScheme,
   };
 
   return <LayoutContext.Provider value={value}>{children}</LayoutContext.Provider>;
 };
-
